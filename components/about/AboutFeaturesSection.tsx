@@ -14,6 +14,7 @@ export default function FeaturesSection() {
             height={800}
             sizes="100vw"
             quality={85}
+            
             className="w-full h-auto object-contain rounded-lg"
             priority
             fetchPriority="high"
