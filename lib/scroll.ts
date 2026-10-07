@@ -200,6 +200,7 @@ export function useScrollbarWidth() {
 
     const width =
       window.innerWidth - document.documentElement.clientWidth;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setScrollbarWidth(width);
 
     const handleResize = () => {

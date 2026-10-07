@@ -20,7 +20,7 @@ export function memoComponent<P extends object>(
  * Create a memoized version of a function
  * Prevents callback recreation on every render
  */
-export function memoCallback<T extends (...args: any[]) => any>(
+export function memoCallback<T extends (...args: never[]) => unknown>(
   callback: T,
   deps: React.DependencyList
 ): T {
@@ -32,7 +32,7 @@ export function memoCallback<T extends (...args: any[]) => any>(
  * Deep equality check for complex objects
  * More thorough than shallow comparison
  */
-export function deepEqual(obj1: any, obj2: any): boolean {
+export function deepEqual(obj1: unknown, obj2: unknown): boolean {
   if (obj1 === obj2) return true;
 
   if (
@@ -44,14 +44,17 @@ export function deepEqual(obj1: any, obj2: any): boolean {
     return false;
   }
 
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
+  const o1 = obj1 as Record<string, unknown>;
+  const o2 = obj2 as Record<string, unknown>;
+
+  const keys1 = Object.keys(o1);
+  const keys2 = Object.keys(o2);
 
   if (keys1.length !== keys2.length) return false;
 
-  for (let key of keys1) {
+  for (const key of keys1) {
     if (!keys2.includes(key)) return false;
-    if (!deepEqual(obj1[key], obj2[key])) return false;
+    if (!deepEqual(o1[key], o2[key])) return false;
   }
 
   return true;
@@ -61,6 +64,7 @@ export function deepEqual(obj1: any, obj2: any): boolean {
  * Custom hook to prevent object recreation on every render
  */
 export function useMemoObject<T extends object>(obj: T, deps: React.DependencyList): T {
+  // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/use-memo
   return useMemo(() => obj, deps);
 }
 
@@ -68,6 +72,7 @@ export function useMemoObject<T extends object>(obj: T, deps: React.DependencyLi
  * Custom hook to prevent array recreation
  */
 export function useMemoArray<T>(arr: T[], deps: React.DependencyList): T[] {
+  // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/use-memo
   return useMemo(() => arr, deps);
 }
 
@@ -83,7 +88,7 @@ export function withMemoProps<P extends object>(
       return deepEqual(prevProps, nextProps);
     }
 
-    for (let prop of propNames) {
+    for (const prop of propNames) {
       if (prevProps[prop] !== nextProps[prop]) {
         return false;
       }
@@ -163,6 +168,8 @@ export function useRenderCount(componentName: string) {
     }
   });
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  // eslint-disable-next-line react-hooks/refs
   return renderCount.current;
 }
 
@@ -174,7 +181,7 @@ export function generateStableKey<T>(item: T, index: number, keyFn?: (item: T) =
   if (keyFn) return keyFn(item);
 
   if (typeof item === "object" && item !== null && "id" in item) {
-    return String((item as any).id);
+    return String((item as Record<string, unknown>).id);
   }
 
   return String(index);

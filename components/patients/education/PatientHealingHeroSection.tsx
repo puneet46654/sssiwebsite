@@ -66,7 +66,7 @@ export default function PatientHeroSection() {
           <p 
             className="text-[#E0E0E0] text-[clamp(16px,2vw,20px)] font-light leading-[1.8] tracking-wide drop-shadow-sm"
           >
-            SS Innovations' technology enables safer, faster, and less invasive surgeries — designed with your wellbeing in mind.
+            SS Innovations&apos; technology enables safer, faster, and less invasive surgeries — designed with your wellbeing in mind.
           </p>
         </motion.div>
 

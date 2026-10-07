@@ -38,7 +38,7 @@ const FOOTER_LINKS = [
 
 const UTILITY_LINKS = [
   { name: "Cookies", href: "/coming-soon" },
-  { name: "Privacy Policy", href: "/coming-soon" },
+  { name: "Privacy Policy", href: "/privacypolicy" },
   { name: "Contact us", href: "/contact" },
   { name: "Terms of use", href: "/coming-soon" },
   { name: "Sitemap", href: "/coming-soon" },

@@ -116,7 +116,7 @@ export default function LatestOpeningsSection() {
             
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.5 }} className="mt-10 flex flex-col items-start justify-between gap-4 rounded-xl sm:flex-row sm:items-center">
               <p className="text-[14px] text-[#808080] font-medium">
-                Couldn't find the role you are looking for? Email your CV and Cover letter at{' '}
+                Couldn&apos;t find the role you are looking for? Email your CV and Cover letter at{' '}
                 <a href="mailto:ssicareers@ssinnovation.org" className="text-[#606060] underline transition-colors hover:text-[#39A7A7]">
                   ssicareers@ssinnovation.org
                 </a>

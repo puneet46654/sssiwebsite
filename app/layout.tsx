@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import localFont from "next/font/local";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
+import CookieBanner from "@/components/common/CookieBanner";
 import "./globals.css";
 
 const sora = localFont({
@@ -68,10 +69,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <head>
         <meta name="color-scheme" content="light dark" />
+        <link rel="preconnect" href="https://flagcdn.com" />
+        <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
       </head>
 
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <CookieBanner />
+        </LanguageProvider>
       </body>
     </html>
   );

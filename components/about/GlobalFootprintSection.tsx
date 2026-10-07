@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const footprintLocations = [
     {
@@ -112,9 +112,9 @@ const footprintLocations = [
     },
 ];
 
-const smoothEase = [0.25, 1, 0.5, 1];
+const smoothEase: [number, number, number, number] = [0.25, 1, 0.5, 1];
 
-const titleVariants: any = {
+const titleVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
         opacity: 1,
@@ -123,7 +123,7 @@ const titleVariants: any = {
     },
 };
 
-const mapVariants: any = {
+const mapVariants: Variants = {
     hidden: { opacity: 0, scale: 0.97 },
     visible: {
         opacity: 1,
@@ -145,7 +145,7 @@ const locationItemVariants = {
     visible: { opacity: 1 },
 };
 
-const pinVariants: any = {
+const pinVariants: Variants = {
     hidden: { scale: 0.3, opacity: 0 },
     visible: {
         scale: 1,
@@ -167,21 +167,21 @@ const labelGroupVariants = {
     },
 };
 
-const textFadeVariants: any = {
+const textFadeVariants: Variants = {
     hidden: { opacity: 0, y: 8, filter: "blur(3px)" },
     visible: {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        transition: { duration: 0.65, ease: smoothEase as any },
+        transition: { duration: 0.65, ease: smoothEase },
     },
 };
 
 const ConnectorLine = ({ align }: { align: string }) => {
     let positionClasses = "";
     let origin = "left center";
-    let hiddenState: any = { scaleX: 0 };
-    let visibleState: any = { scaleX: 1 };
+    let hiddenState: Record<string, number> = { scaleX: 0 };
+    let visibleState: Record<string, number> = { scaleX: 1 };
 
     switch (align) {
         case "right":
@@ -242,6 +242,7 @@ export default function GlobalFootprintSection() {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsMounted(true);
     }, []);
 

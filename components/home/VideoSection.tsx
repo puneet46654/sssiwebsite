@@ -13,7 +13,7 @@ function VideoSection() {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     if (!videoSrc) {
-                        setVideoSrc("/videos/video.webm");
+                        setVideoSrc("/videos/home/video.webm");
                     }
                     if (videoRef.current) {
                         videoRef.current.muted = true;

@@ -13,15 +13,15 @@ const soraLight = localFont({
 const instruments = [
   {
     title: 'Monopolar Cautery',
-    image: '/images/technology/ssimudra/section3/image1.png',
+    image: '/images/technology/ssimudra/section3/image1.webp',
   },
   {
     title: 'Bipolar Cautery',
-    image: '/images/technology/ssimudra/section3/image2.png',
+    image: '/images/technology/ssimudra/section3/image2.webp',
   },
   {
     title: 'Specialty',
-    image: '/images/technology/ssimudra/section3/image3.png',
+    image: '/images/technology/ssimudra/section3/image3.webp',
   },
 ];
 

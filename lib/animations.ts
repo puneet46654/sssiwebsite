@@ -211,7 +211,10 @@ export const bounce: Variants = {
 /**
  * Optimize animation for reduced motion preferences
  */
-export function getReducedMotionVariants(variants: Variants): Variants {
+export function getReducedMotionVariants(): {
+  hidden: { opacity: number };
+  visible: { opacity: number; transition: { duration: number } };
+} {
   return {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.1 } },
@@ -317,7 +320,10 @@ export function createVariants(
   options: { reduceMotion?: boolean } = {}
 ): Variants {
   if (options.reduceMotion) {
-    return getReducedMotionVariants(variants);
+    return {
+      hidden: { opacity: 0 },
+      visible: { opacity: 1, transition: { duration: 0.1 } },
+    };
   }
   return variants;
 }

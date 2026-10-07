@@ -44,7 +44,7 @@ export default function LifeAtSSISection() {
               Life at SSI
             </motion.h2>
             <motion.p variants={textVariants} className="text-[14px] font-light leading-[1.85] text-[#606060] md:text-[15px]">
-              At SSI Innovations, we blend innovation with a clear purpose—to advance surgical care and improve lives. We lead with compassion, ensuring every solution is shaped around people's needs. With agility, we adapt swiftly, embrace change, and turn challenges into opportunities. Guided by humility, we value every voice, learn from every experience, and work together to create lasting impact.
+              At SSI Innovations, we blend innovation with a clear purpose—to advance surgical care and improve lives. We lead with compassion, ensuring every solution is shaped around people&apos;s needs. With agility, we adapt swiftly, embrace change, and turn challenges into opportunities. Guided by humility, we value every voice, learn from every experience, and work together to create lasting impact.
             </motion.p>
           </div>
 

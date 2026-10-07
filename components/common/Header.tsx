@@ -18,10 +18,10 @@ const menuItems = [
   {
     name: "Company",
     subItems: [
-      { name: "About SSI", href: "/about" },
-      { name: "News and Media", href: "/news" },
-      { name: "Publications", href: "/publications" },
-      { name: "Careers", href: "/careers" },
+      { name: "About SSI", href: "/company/about" },
+      { name: "News and Media", href: "/company/news" },
+      { name: "Publications", href: "/company/publications" },
+      { name: "Careers", href: "/company/careers" },
     ],
   },
   {
@@ -34,14 +34,14 @@ const menuItems = [
   {
     name: "Healthcare Professional",
     subItems: [
-      { name: "Surgery with SSI", href: "/coming-soon" },
+      { name: "Surgery with SSI", href: "/healthcareprofessional/surgery" },
       { name: "Training and Education", href: "/coming-soon" },
-      { name: "Clinical Partners", href: "/coming-soon" },
+      { name: "Clinical Partners", href: "/healthcareprofessional/clinicalpartners" },
     ],
   },
   {
     name: "Demo",
-    href: "/coming-soon",
+    href: "/demo",
     subItems: [],
   },
 ];
@@ -54,10 +54,10 @@ type SearchItem = {
 
 const searchItems: SearchItem[] = [
   { name: "Home", href: "/home", description: "Landing page" },
-  { name: "About SSI", href: "/about", description: "Company overview" },
-  { name: "News and Media", href: "/news", description: "Latest updates" },
-  { name: "Publications", href: "/publications", description: "Research and papers" },
-  { name: "Careers", href: "/careers", description: "Open positions" },
+  { name: "About SSI", href: "/company/about", description: "Company overview" },
+  { name: "News and Media", href: "/company/news", description: "Latest updates" },
+  { name: "Publications", href: "/company/publications", description: "Research and papers" },
+  { name: "Careers", href: "/company/careers", description: "Open positions" },
   { name: "Patient Education", href: "/patients/education", description: "Patient resources" },
   { name: "Clinical Applications", href: "/patients/application", description: "Medical use cases" },
   { name: "Telesurgery", href: "/technology/telesurgery", description: "Remote surgical systems" },
@@ -102,11 +102,15 @@ function Header() {
   }, [normalizedSearch]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMobileMenuOpen(false);
     setIsSearchOpen(false);
   }, [pathname]);
 
   useEffect(() => {
+    // In dev every prefetch compiles a whole route, which can trigger HMR full-page reloads.
+    if (process.env.NODE_ENV !== "production") return;
+
     let isCancelled = false;
     const idleWindow = window as Window & {
       requestIdleCallback?: (

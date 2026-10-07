@@ -47,6 +47,7 @@ function CountUpNumber({
 
   useEffect(() => {
     if (!isInView) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setValue(0);
       return;
     }
@@ -145,7 +146,7 @@ function RedefiningRoboticSurgerySection() {
           className="relative flex min-h-[220px] items-center justify-start overflow-hidden bg-[#2CA3A5] px-[46px] md:min-h-[360px] md:justify-center md:px-6 lg:min-h-[420px]"
         >
           <Image
-            src="/images/home/section3/image3.png"
+            src="/images/home/section3/image3.webp"
             alt="Surgeries performed"
             fill
             sizes="(max-width: 1024px) 50vw, 28vw"
@@ -164,7 +165,7 @@ function RedefiningRoboticSurgerySection() {
           className="relative min-h-[220px] overflow-hidden bg-[#1A1A1A] md:min-h-[360px] lg:min-h-[420px]"
         >
           <Image
-            src="/images/home/section3/image2.png"
+            src="/images/home/section3/image2.webp"
             alt="Robotic system closeup"
             fill
             sizes="(max-width: 1024px) 50vw, 28vw"
@@ -181,7 +182,7 @@ function RedefiningRoboticSurgerySection() {
           className="relative hidden min-h-[420px] overflow-hidden bg-[#1A1A1A] lg:block"
         >
           <Image
-            src="/images/home/section3/image1.png"
+            src="/images/home/section3/image1.webp"
             alt="Surgeon using robotic console"
             fill
             sizes="45vw"

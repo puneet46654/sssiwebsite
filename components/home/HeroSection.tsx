@@ -65,6 +65,7 @@ function HeroSection() {
       return () => clearTimeout(timer);
     } else {
       contentControls.set("hidden");
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsMobileExpanded(false);
     }
   }, [isInView, contentControls]);

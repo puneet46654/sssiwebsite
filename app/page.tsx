@@ -1,12 +1,9 @@
-export default function RootRedirectPage() {
-    return (
-        <main className="min-h-screen bg-black">
-            <meta httpEquiv="refresh" content="0;url=/home/" />
-            <script
-                dangerouslySetInnerHTML={{
-                    __html: "window.location.replace('/home/');",
-                }}
-            />
-        </main>
-    );
-}
+import type { Metadata } from "next";
+
+// Serve the home page directly at "/" instead of redirecting: a static export can only redirect
+// on the client, which costs a blank page plus a second full page load.
+export { default } from "./home/page";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/home/" },
+};

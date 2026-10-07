@@ -1,3 +1,4 @@
+import Image from "next/image";
 import localFont from "next/font/local";
 
 const sora = localFont({
@@ -10,13 +11,12 @@ export default function WhoWeAreImageSection() {
   return (
     <section className={`relative w-full min-h-[950px] flex items-center py-16 ${sora.variable}`}>
       <div className="absolute inset-0 z-0 bg-[#f4f6f8] overflow-hidden">
-        <img
+        <Image
           src="/images/about/whoweare/image1.webp"
           alt="Who We Are Background"
+          fill
           className="absolute inset-0 h-full w-full object-cover object-right lg:object-center"
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent lg:from-transparent"></div>
       </div>

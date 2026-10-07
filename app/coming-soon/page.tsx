@@ -30,7 +30,7 @@ export default function ComingSoon() {
         </motion.h1>
         
         <motion.h2 className="text-xl md:text-2xl font-medium text-[#1E1E1E] mt-4 mb-2" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }} style={{ fontFamily: "var(--font-sora), sans-serif" }}>
-          We're crafting something brilliant.
+          We&apos;re crafting something brilliant.
         </motion.h2>
 
         

@@ -288,6 +288,7 @@ const HistoryTimelineSection = () => {
     })));
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
         const handleResize = () => setIsMobile(window.innerWidth < 768);
         handleResize();

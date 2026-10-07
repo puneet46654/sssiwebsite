@@ -29,7 +29,7 @@ export function formatDate(date: Date): string {
         day: 'numeric',
     });
 }
-export function debounce<T extends (...args: any[]) => unknown>(func: T, wait: number) {
+export function debounce<T extends (...args: unknown[]) => unknown>(func: T, wait: number) {
     let timeout: ReturnType<typeof setTimeout>;
     return (...args: Parameters<T>): void => {
         clearTimeout(timeout);

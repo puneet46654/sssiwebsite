@@ -1,9 +1,11 @@
 import withBundleAnalyzer from "@next/bundle-analyzer";
+import type { NextConfig } from "next";
+
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   compress: true,
   productionBrowserSourceMaps: false,
   poweredByHeader: false,
@@ -39,4 +41,4 @@ const nextConfig = {
   },
 };
 
-export default bundleAnalyzer(nextConfig as any);
+export default bundleAnalyzer(nextConfig);

@@ -31,6 +31,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const savedCountry = localStorage.getItem("ssi-country") as CountryCode | null;
 
     if (savedCountry && savedCountry in translations) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCountryState(savedCountry);
     }
   }, []);

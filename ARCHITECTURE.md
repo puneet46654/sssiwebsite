@@ -1,27 +1,72 @@
 # Project Architecture
 
-This project uses the Next.js App Router. The `app` directory is reserved for route segments and framework files such as `page.tsx`, `layout.tsx`, and `loading.tsx`.
+## Overview
+Static-export Next.js 16 site with App Router. Optimized for CDN distribution with zero runtime dependencies on Node.js.
 
-## Source Layout
+## Directory Structure
 
-- `app/`: Route definitions and page composition.
-- `components/`: Reusable UI sections grouped by site area.
-- `components/common/`: Shared layout components such as `Header` and `Footer`.
-- `components/ui/`: Generic UI primitives and loading helpers.
-- `constants/`: Shared configuration and design constants.
-- `lib/`: Framework-independent utilities.
-- `types/`: Shared TypeScript types.
-- `public/`: Static assets served from the site root.
+### Core Directories
+- **`app/`** – Route segments, layouts, and page composition (Next.js App Router)
+- **`components/`** – UI components grouped by feature area
+  - `common/` – Shared: Header, Footer, layout wrappers
+  - `ui/` – Primitives: Button, LazySection, OptimizedImage, PageSkeleton
+  - `{feature}/` – Feature-specific sections (careers, technology, patients, etc.)
+- **`lib/`** – Utilities: animations, i18n, scroll, memoization, DOM helpers
+- **`types/`** – Shared TypeScript definitions
+- **`constants/`** – Design tokens, theme, config
+- **`public/`** – Static assets: fonts, images, SVGs, videos
 
-## Naming Standards
+## Naming Conventions
 
-- React component files use PascalCase, for example `HeroSection.tsx`.
-- Route files keep Next.js required lowercase convention, for example `page.tsx`.
-- Public asset filenames use lowercase kebab-case, for example `black-diamond-forceps.webp`.
-- Feature folders use lowercase URL-friendly names that match the route or product area.
+| Type | Convention | Example |
+|------|-----------|---------|
+| React components | PascalCase | `HeroSection.tsx` |
+| Route files | lowercase | `page.tsx`, `layout.tsx` |
+| Public assets | kebab-case | `black-diamond-forceps.webp` |
+| Feature folders | URL-friendly lowercase | `healthcareprofessional/surgery/` |
 
-## Import Standards
+## Import Pattern
 
-- Use the `@/` alias for app source imports.
-- Keep route files focused on composing sections.
-- Keep visual sections inside `components/<feature>/` unless they are truly shared.
+- Use `@/{category}/*` for scoped imports (e.g., `@/components/home/HeroSection`)
+- Aliases map to explicit directories (not root-relative)
+
+## Data Flow
+
+- **No runtime API calls** – All data is compiled at build time via `output: "export"`
+- **Metadata** – Built into component props, no external sources
+- **Static generation** – Every page pre-rendered, served via CDN
+
+## Component Structure
+
+```
+PageRoute (app/feature/page.tsx)
+├── HeroSection (composition)
+├── FeatureSection (composition)
+└── Footer (layout)
+
+Section (e.g., HeroSection.tsx)
+├── Lazy load detection (LazySection wrapper)
+├── OptimizedImage (responsive, multiple formats)
+├── Animation state (framer-motion)
+└── Child primitives (Button, text, etc.)
+```
+
+## Performance Strategy
+
+- **Code splitting** – Route-based bundles via App Router
+- **Image optimization** – AVIF/WebP with device-specific sizes
+- **3D assets** – React Three Fiber (deferred on hero sections only)
+- **Scroll animation** – Lenis for smooth UX, memoized scroll listeners
+- **Minification** – Native Next.js compression enabled
+
+## Error Handling
+
+- **Build errors** – Fixed during `npm run build`
+- **Runtime errors** – None expected (static export)
+- **Missing assets** – Build fails (preventing broken production)
+
+## Environment
+
+- No `.env` files needed (static content only)
+- Bundle analysis: `npm run analyze`
+- Preview: `npm run build && npm start`
